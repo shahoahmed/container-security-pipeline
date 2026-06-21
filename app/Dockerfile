@@ -2,7 +2,7 @@
 # real findings to surface and map — that's the point of the exercise.
 # In a real production pipeline this would track :latest-slim and get rebuilt
 # on a schedule to stay current.
-FROM python:3.9-slim-bullseye
+FROM python:3.12-slim-bookworm
 
 WORKDIR /app
 
