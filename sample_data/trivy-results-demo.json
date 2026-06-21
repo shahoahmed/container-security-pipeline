@@ -1,0 +1,112 @@
+{
+  "_NOTE": "DEMO/SAMPLE DATA — not a live scan. This sandbox has no Docker or network access, so this file mimics Trivy's real JSON schema with illustrative CVE-style IDs (prefixed DEMO-) to test compliance_mapper.py end-to-end. When you run the actual GitHub Actions workflow, Trivy will overwrite this with real scan results from real CVEs.",
+  "SchemaVersion": 2,
+  "ArtifactName": "compliance-demo-app:latest",
+  "ArtifactType": "container_image",
+  "Results": [
+    {
+      "Target": "compliance-demo-app:latest (debian 11.6)",
+      "Class": "os-pkgs",
+      "Type": "debian",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "DEMO-CVE-2024-1001",
+          "PkgName": "openssl",
+          "InstalledVersion": "1.1.1n-0+deb11u4",
+          "FixedVersion": "1.1.1n-0+deb11u5",
+          "Severity": "CRITICAL",
+          "Title": "openssl: TLS handshake remote code execution",
+          "Description": "A flaw in TLS certificate parsing allows remote code execution via crafted handshake messages.",
+          "PrimaryURL": "https://example.org/demo-cve-2024-1001"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2024-1002",
+          "PkgName": "libc-bin",
+          "InstalledVersion": "2.31-13+deb11u5",
+          "FixedVersion": "2.31-13+deb11u7",
+          "Severity": "CRITICAL",
+          "Title": "glibc: heap buffer overflow in dynamic loader",
+          "Description": "Buffer overflow in the dynamic loader allows privilege escalation to root.",
+          "PrimaryURL": "https://example.org/demo-cve-2024-1002"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2023-2045",
+          "PkgName": "zlib1g",
+          "InstalledVersion": "1.2.11.dfsg-2+deb11u2",
+          "FixedVersion": "1.2.11.dfsg-2+deb11u3",
+          "Severity": "HIGH",
+          "Title": "zlib: heap-based buffer overflow in inflate()",
+          "Description": "Crafted compressed input can trigger a buffer overflow during decompression.",
+          "PrimaryURL": "https://example.org/demo-cve-2023-2045"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2023-2099",
+          "PkgName": "curl",
+          "InstalledVersion": "7.74.0-1.3+deb11u7",
+          "FixedVersion": "7.74.0-1.3+deb11u9",
+          "Severity": "HIGH",
+          "Title": "curl: TLS session reuse authentication bypass",
+          "Description": "Improper session cache validation can allow auth bypass under specific reuse conditions.",
+          "PrimaryURL": "https://example.org/demo-cve-2023-2099"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2022-3311",
+          "PkgName": "ncurses-base",
+          "InstalledVersion": "6.2+20201114-2",
+          "FixedVersion": "not available",
+          "Severity": "MEDIUM",
+          "Title": "ncurses: out-of-bounds read in terminal capability parser",
+          "Description": "Malformed terminfo entries can cause an out-of-bounds read.",
+          "PrimaryURL": "https://example.org/demo-cve-2022-3311"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2022-3312",
+          "PkgName": "tar",
+          "InstalledVersion": "1.34+dfsg-1",
+          "FixedVersion": "1.34+dfsg-1+deb11u1",
+          "Severity": "MEDIUM",
+          "Title": "tar: denial of service via crafted archive",
+          "Description": "A crafted archive can cause excessive resource consumption during extraction.",
+          "PrimaryURL": "https://example.org/demo-cve-2022-3312"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2021-4002",
+          "PkgName": "gzip",
+          "InstalledVersion": "1.10-4",
+          "FixedVersion": "1.10-4+deb11u1",
+          "Severity": "LOW",
+          "Title": "gzip: minor information disclosure via error messages",
+          "Description": "Verbose error output may leak partial file path information.",
+          "PrimaryURL": "https://example.org/demo-cve-2021-4002"
+        }
+      ]
+    },
+    {
+      "Target": "app/requirements.txt",
+      "Class": "lang-pkgs",
+      "Type": "python-pkg",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "DEMO-CVE-2023-5050",
+          "PkgName": "Flask",
+          "InstalledVersion": "2.0.1",
+          "FixedVersion": "2.3.2",
+          "Severity": "HIGH",
+          "Title": "Flask: improper session cookie validation",
+          "Description": "Session cookies are not properly validated, allowing forged authentication tokens.",
+          "PrimaryURL": "https://example.org/demo-cve-2023-5050"
+        },
+        {
+          "VulnerabilityID": "DEMO-CVE-2023-5099",
+          "PkgName": "Werkzeug",
+          "InstalledVersion": "2.0.1",
+          "FixedVersion": "2.3.3",
+          "Severity": "MEDIUM",
+          "Title": "Werkzeug: debugger denial of service",
+          "Description": "The interactive debugger can be triggered remotely under certain misconfigurations.",
+          "PrimaryURL": "https://example.org/demo-cve-2023-5099"
+        }
+      ]
+    }
+  ]
+}

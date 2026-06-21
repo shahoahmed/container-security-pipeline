@@ -1,0 +1,177 @@
+{
+  "generated_at": "2026-06-21T18:49:07.918913+00:00",
+  "image": "compliance-demo-app:demo-run",
+  "total_findings": 9,
+  "by_severity": {
+    "CRITICAL": 2,
+    "HIGH": 3,
+    "MEDIUM": 3,
+    "LOW": 1
+  },
+  "fixable_findings": 8,
+  "risk_score": 42,
+  "control_coverage": {
+    "3.11.2 - Periodically scan for vulnerabilities": 9,
+    "3.14.1 - Identify, report, and correct system flaws in a timely manner": 9,
+    "3.11.3 - Remediate vulnerabilities in accordance with risk assessments": 5,
+    "3.13.1 - Monitor, control, and protect organizational communications": 5,
+    "3.13.8 - Implement cryptographic mechanisms to protect CUI in transit": 2,
+    "3.4.2 - Establish and enforce security configuration settings": 2,
+    "3.5.1 - Identify and authenticate organizational users": 2,
+    "3.1.5 - Employ the principle of least privilege": 1
+  },
+  "findings": [
+    {
+      "id": "DEMO-CVE-2024-1001",
+      "package": "openssl",
+      "installed_version": "1.1.1n-0+deb11u4",
+      "fixed_version": "1.1.1n-0+deb11u5",
+      "severity": "CRITICAL",
+      "title": "openssl: TLS handshake remote code execution",
+      "description": "A flaw in TLS certificate parsing allows remote code execution via crafted handshake messages.",
+      "url": "https://example.org/demo-cve-2024-1001",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.11.3 - Remediate vulnerabilities in accordance with risk assessments",
+        "3.13.1 - Monitor, control, and protect organizational communications",
+        "3.13.8 - Implement cryptographic mechanisms to protect CUI in transit",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner",
+        "3.4.2 - Establish and enforce security configuration settings"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2024-1002",
+      "package": "libc-bin",
+      "installed_version": "2.31-13+deb11u5",
+      "fixed_version": "2.31-13+deb11u7",
+      "severity": "CRITICAL",
+      "title": "glibc: heap buffer overflow in dynamic loader",
+      "description": "Buffer overflow in the dynamic loader allows privilege escalation to root.",
+      "url": "https://example.org/demo-cve-2024-1002",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.1.5 - Employ the principle of least privilege",
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.11.3 - Remediate vulnerabilities in accordance with risk assessments",
+        "3.13.1 - Monitor, control, and protect organizational communications",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner",
+        "3.4.2 - Establish and enforce security configuration settings"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2023-2045",
+      "package": "zlib1g",
+      "installed_version": "1.2.11.dfsg-2+deb11u2",
+      "fixed_version": "1.2.11.dfsg-2+deb11u3",
+      "severity": "HIGH",
+      "title": "zlib: heap-based buffer overflow in inflate()",
+      "description": "Crafted compressed input can trigger a buffer overflow during decompression.",
+      "url": "https://example.org/demo-cve-2023-2045",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.11.3 - Remediate vulnerabilities in accordance with risk assessments",
+        "3.13.1 - Monitor, control, and protect organizational communications",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2023-2099",
+      "package": "curl",
+      "installed_version": "7.74.0-1.3+deb11u7",
+      "fixed_version": "7.74.0-1.3+deb11u9",
+      "severity": "HIGH",
+      "title": "curl: TLS session reuse authentication bypass",
+      "description": "Improper session cache validation can allow auth bypass under specific reuse conditions.",
+      "url": "https://example.org/demo-cve-2023-2099",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.11.3 - Remediate vulnerabilities in accordance with risk assessments",
+        "3.13.8 - Implement cryptographic mechanisms to protect CUI in transit",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner",
+        "3.5.1 - Identify and authenticate organizational users"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2022-3311",
+      "package": "ncurses-base",
+      "installed_version": "6.2+20201114-2",
+      "fixed_version": "not available",
+      "severity": "MEDIUM",
+      "title": "ncurses: out-of-bounds read in terminal capability parser",
+      "description": "Malformed terminfo entries can cause an out-of-bounds read.",
+      "url": "https://example.org/demo-cve-2022-3311",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2022-3312",
+      "package": "tar",
+      "installed_version": "1.34+dfsg-1",
+      "fixed_version": "1.34+dfsg-1+deb11u1",
+      "severity": "MEDIUM",
+      "title": "tar: denial of service via crafted archive",
+      "description": "A crafted archive can cause excessive resource consumption during extraction.",
+      "url": "https://example.org/demo-cve-2022-3312",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.13.1 - Monitor, control, and protect organizational communications",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2021-4002",
+      "package": "gzip",
+      "installed_version": "1.10-4",
+      "fixed_version": "1.10-4+deb11u1",
+      "severity": "LOW",
+      "title": "gzip: minor information disclosure via error messages",
+      "description": "Verbose error output may leak partial file path information.",
+      "url": "https://example.org/demo-cve-2021-4002",
+      "target": "compliance-demo-app:latest (debian 11.6)",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2023-5050",
+      "package": "Flask",
+      "installed_version": "2.0.1",
+      "fixed_version": "2.3.2",
+      "severity": "HIGH",
+      "title": "Flask: improper session cookie validation",
+      "description": "Session cookies are not properly validated, allowing forged authentication tokens.",
+      "url": "https://example.org/demo-cve-2023-5050",
+      "target": "app/requirements.txt",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.11.3 - Remediate vulnerabilities in accordance with risk assessments",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner",
+        "3.5.1 - Identify and authenticate organizational users"
+      ]
+    },
+    {
+      "id": "DEMO-CVE-2023-5099",
+      "package": "Werkzeug",
+      "installed_version": "2.0.1",
+      "fixed_version": "2.3.3",
+      "severity": "MEDIUM",
+      "title": "Werkzeug: debugger denial of service",
+      "description": "The interactive debugger can be triggered remotely under certain misconfigurations.",
+      "url": "https://example.org/demo-cve-2023-5099",
+      "target": "app/requirements.txt",
+      "mapped_controls": [
+        "3.11.2 - Periodically scan for vulnerabilities",
+        "3.13.1 - Monitor, control, and protect organizational communications",
+        "3.14.1 - Identify, report, and correct system flaws in a timely manner"
+      ]
+    }
+  ]
+}

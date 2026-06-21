@@ -1,0 +1,59 @@
+name: Container Security & Compliance Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t compliance-demo-app:${{ github.sha }} -f app/Dockerfile app
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'compliance-demo-app:${{ github.sha }}'
+          format: 'json'
+          output: 'trivy-results.json'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'
+          # exit-code 0 here on purpose — Trivy's job is to report, not decide.
+          # The compliance gate below makes the actual pass/fail call so the
+          # decision logic lives in one auditable place instead of being split
+          # across tool flags.
+          exit-code: '0'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate NIST 800-171 compliance report
+        run: |
+          python scripts/compliance_mapper.py \
+            --input trivy-results.json \
+            --output reports/ \
+            --image "compliance-demo-app:${{ github.sha }}"
+
+      - name: Upload compliance report as build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compliance-report-${{ github.sha }}
+          path: reports/
+
+      - name: Enforce security gate
+        run: |
+          python scripts/compliance_mapper.py \
+            --input trivy-results.json \
+            --gate-only \
+            --fail-on CRITICAL,HIGH
