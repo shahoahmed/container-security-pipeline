@@ -76,6 +76,39 @@ by definition. From there:
 This is intentionally a rules-based first pass, not a claim of legal
 compliance determination — see Limitations below.
 
+## Results
+
+### Build-blocking findings: 46 to 13
+
+![Build-blocking findings before and after](screenshots/01-build-blocking-findings-before-after.jpg)
+
+Two scans of the same application, same mapper, same gate. The only change was
+the base image: `python:3.9-slim-bullseye` to `python:3.12-slim-bookworm`.
+
+| Scan | Critical | High | Build-blocking total |
+|------|----------|------|----------------------|
+| First scan (`python:3.9-slim-bullseye`) | 7 | 39 | 46 |
+| After fix (`python:3.12-slim-bookworm`) | 4 | 9 | 13 |
+
+A 72% reduction in build-blocking findings from a two-line Dockerfile change.
+This is the argument for scanning at build time rather than after deployment:
+the cheapest remediation available was invisible until the pipeline surfaced it.
+
+### Generated compliance report
+
+![Container compliance report](screenshots/02-compliance-report-post-fix.jpg)
+
+Post-fix build: 158 total findings mapped across NIST 800-171 control families,
+with 4 critical and 9 high gating the build. Every finding maps to 3.11.2
+(periodic vulnerability scanning) and 3.14.1 (flaw remediation) by definition.
+Beyond that baseline, 31 findings map to 3.13.1 (boundary protection), 28 to
+3.5.1 (identification and authentication), and 22 to 3.1.5 (least privilege).
+
+Worth noting: only 5 of 158 findings had a fix available at scan time. That gap
+is the real operational problem with container CVE data, and it is why the gate
+keys on severity rather than raw finding count. Blocking on 158 findings when
+153 have no available remediation would make the pipeline unusable.
+
 ## Running it locally
 
 ```bash
