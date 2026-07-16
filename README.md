@@ -55,7 +55,7 @@ audit evidence, not just a raw CVE dump.
 | `app/Dockerfile`, `app/app.py` | Minimal Flask service used as the scan target |
 | `.github/workflows/security-scan.yml` | Builds the image, runs Trivy, runs the compliance gate on every push/PR |
 | `scripts/compliance_mapper.py` | Core engine — parses scan output, maps to NIST 800-171, generates the report, enforces the gate |
-| `terraform/main.tf` | ECR repository with scan-on-push, immutable tags, and lifecycle cleanup |
+| `terraform/main.tf` | ECR repository with scan-on-push, KMS encryption at rest, immutable tags, and lifecycle cleanup |
 | `sample_data/trivy-results-demo.json` | Demo scan output for testing the mapper locally without Docker/network |
 | `reports/` | Generated compliance reports land here |
 
@@ -159,8 +159,9 @@ security automation, AWS fundamentals.
 - Currently only maps CVE-class findings. A fuller implementation would
   also ingest IaC misconfiguration findings (e.g. from `tfsec` or Trivy's
   config scanning mode) against the same control set.
-- The Terraform module provisions a registry, not the full runtime
-  environment — extending it to the compute layer is the next step.
+- The Terraform module provisions a hardened registry (scan-on-push, KMS
+encryption at rest, immutable tags, lifecycle expiry), not the full runtime
+environment. Extending it to the compute layer is the next step.
 
 ## Roadmap
 
