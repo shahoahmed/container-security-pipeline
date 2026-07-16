@@ -1,5 +1,10 @@
 # Container Compliance Report
 
+> **Demo output.** Generated from `sample_data/trivy-results-demo.json` using
+> synthetic `DEMO-CVE-*` identifiers, so the mapper can be tested without Docker
+> or network access. For real scan results, see the Results section in the
+> project README.
+
 **Image:** `compliance-demo-app:demo-run`  
 **Generated:** 2026-06-21T18:49:07.918913+00:00  
 **Standard:** NIST SP 800-171 / DFARS 252.204-7012
